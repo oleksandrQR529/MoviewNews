@@ -11,6 +11,8 @@ class SearchResultsPresenter {
     
     weak private var delegate: NewsSearchDelegate?
     
+    private(set) var searchResults: SearchData?
+    
     func setViewDelegate(viewDelegate delegate: NewsSearchDelegate){
         self.delegate = delegate
     }
@@ -22,9 +24,17 @@ class SearchResultsPresenter {
         guard let url = URL(string: urlString) else { return }
         
         NetworkService.shared.loadData(from: url, dataModel: SearchData.self) { [weak self] (data) in
-            self?.delegate?.reloadData(data: data)
+            
+            self?.searchResults = data
+            
+            self?.delegate?.reloadData()
         }
         
+    }
+    
+    func resetResults() {
+        searchResults = nil
+        delegate?.reloadData()
     }
     
 }

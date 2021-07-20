@@ -9,7 +9,7 @@ import UIKit
 
 protocol NewsSearchDelegate: NSObjectProtocol {
     
-    func reloadData<T: Codable>(data: T)
+    func reloadData()
     
 }
 
@@ -19,8 +19,6 @@ class NewsSearchViewController: UIViewController {
     private let searchController = UISearchController()
     
     private let presenter = SearchResultsPresenter()
-    
-    private var searchResults: SearchData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,8 +61,7 @@ extension NewsSearchViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchResults = nil
-        resultsTableView.reloadData()
+        presenter.resetResults()
     }
     
 }
@@ -73,10 +70,7 @@ extension NewsSearchViewController: UISearchBarDelegate {
 
 extension NewsSearchViewController: NewsSearchDelegate {
     
-    func reloadData<T>(data: T) where T : Decodable, T : Encodable {
-        
-        guard let results = data as? SearchData else { return }
-        searchResults = results
+    func reloadData() {
         
         resultsTableView.reloadData()
     }
@@ -88,14 +82,14 @@ extension NewsSearchViewController: NewsSearchDelegate {
 extension NewsSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults?.details.count ?? 0
+        return presenter.searchResults?.details.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier) as? SearchResultTableViewCell,
-              let detail = searchResults?.details[indexPath.row]
+              let detail = presenter.searchResults?.details[indexPath.row]
         else { return cell }
         
         cell.label.text = detail.name

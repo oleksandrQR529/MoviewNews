@@ -20,6 +20,8 @@ class NewsPresenter {
      */
     private var loadedPageNumber = 1
     
+    private var newsTypePageNumber = 0
+    
 // MARK: - Public methods
     
     func setViewDelegate(viewDelegate delegate: NewsListDelegate){
@@ -40,6 +42,29 @@ class NewsPresenter {
         mostPopular = nil
         topRated = nil
         delegate?.reloadData()
+    }
+    
+    func newsTypeChanged(pageNumber: Int) {
+        newsTypePageNumber = pageNumber
+        checkNewstypePageNumber()
+    }
+    
+    func swipeLeft(currentPageNumber: @escaping ((Int) -> Void) ) {
+        newsTypePageNumber -= 1
+        newsTypePageNumber < 0 ? (newsTypePageNumber = 0) : ()
+        
+        currentPageNumber(newsTypePageNumber)
+        
+        checkNewstypePageNumber()
+    }
+    
+    func swipeRight(currentPageNumber: @escaping ((Int) -> Void) ) {
+        newsTypePageNumber += 1
+        newsTypePageNumber > 2 ? (newsTypePageNumber = 2) : ()
+        
+        currentPageNumber(newsTypePageNumber)
+        
+        checkNewstypePageNumber()
     }
     
         
@@ -75,6 +100,10 @@ class NewsPresenter {
             onSuccess(data)
         }
         
+    }
+    
+    private func checkNewstypePageNumber() {
+        newsTypePageNumber == 0 ? (loadNews()) : (resetNewsData())
     }
     
     

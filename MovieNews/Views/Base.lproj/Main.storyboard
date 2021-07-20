@@ -52,22 +52,22 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="v2l-qL-HQU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="20" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2l-qL-HQU">
                                 <rect key="frame" x="0.0" y="37.666666666666686" width="390" height="718.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="1Dk-l0-gur"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="TjS-bw-qUS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2qf-Rp-Jc3"/>
+                            <constraint firstItem="TjS-bw-qUS" firstAttribute="leading" secondItem="1Dk-l0-gur" secondAttribute="leading" id="2qf-Rp-Jc3"/>
                             <constraint firstItem="v2l-qL-HQU" firstAttribute="top" secondItem="TjS-bw-qUS" secondAttribute="bottom" id="4Wn-xx-Y1A"/>
-                            <constraint firstItem="v2l-qL-HQU" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="7PC-ga-zDx"/>
+                            <constraint firstItem="v2l-qL-HQU" firstAttribute="trailing" secondItem="1Dk-l0-gur" secondAttribute="trailing" id="7PC-ga-zDx"/>
                             <constraint firstItem="ehw-0H-hc2" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.05" id="85p-9m-c8Z"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TjS-bw-qUS" secondAttribute="trailing" id="TXg-WE-JBF"/>
-                            <constraint firstItem="TjS-bw-qUS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZfQ-rI-ePi"/>
+                            <constraint firstItem="1Dk-l0-gur" firstAttribute="trailing" secondItem="TjS-bw-qUS" secondAttribute="trailing" id="TXg-WE-JBF"/>
+                            <constraint firstItem="TjS-bw-qUS" firstAttribute="top" secondItem="1Dk-l0-gur" secondAttribute="top" id="ZfQ-rI-ePi"/>
                             <constraint firstAttribute="bottom" secondItem="v2l-qL-HQU" secondAttribute="bottom" id="a8A-ss-WB0"/>
-                            <constraint firstItem="v2l-qL-HQU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eyv-g5-Hg5"/>
+                            <constraint firstItem="v2l-qL-HQU" firstAttribute="leading" secondItem="1Dk-l0-gur" secondAttribute="leading" id="eyv-g5-Hg5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="News" id="pOJ-jK-Xol">
@@ -103,12 +103,12 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="aS0-cD-xSn"/>
+                        <viewLayoutGuide key="safeArea" id="c2x-Tq-Zb1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mlB-wa-46Y" firstAttribute="top" secondItem="88U-hj-Pju" secondAttribute="top" id="KFm-e7-NCl"/>
-                            <constraint firstItem="mlB-wa-46Y" firstAttribute="leading" secondItem="88U-hj-Pju" secondAttribute="leading" id="e4b-KY-sjU"/>
-                            <constraint firstAttribute="trailing" secondItem="mlB-wa-46Y" secondAttribute="trailing" id="r2k-fl-yaX"/>
+                            <constraint firstItem="mlB-wa-46Y" firstAttribute="leading" secondItem="c2x-Tq-Zb1" secondAttribute="leading" id="e4b-KY-sjU"/>
+                            <constraint firstItem="c2x-Tq-Zb1" firstAttribute="trailing" secondItem="mlB-wa-46Y" secondAttribute="trailing" id="r2k-fl-yaX"/>
                             <constraint firstAttribute="bottom" secondItem="mlB-wa-46Y" secondAttribute="bottom" id="voV-aw-54f"/>
                         </constraints>
                     </view>

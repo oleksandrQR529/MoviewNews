@@ -43,14 +43,28 @@ class NewsListViewController: UIViewController {
         
         newsPresenter.setViewDelegate(viewDelegate: self)
         
+        setupTableView()
+        setupPageControll()
+        
+    }
+    
+    private func setupTableView() {
+        
         allNewsTableView.delegate = self
         allNewsTableView.dataSource = self
+        
         allNewsTableView.register(NewsTableViewCell.nibName,
                            forCellReuseIdentifier: NewsTableViewCell.identifier)
         allNewsTableView.register(TopNewsTableViewCell.nibName,
                            forCellReuseIdentifier: TopNewsTableViewCell.identifier)
         
-        setupPageControll()
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeRight.direction = .left
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipeLeft.direction = .right
+        
+        allNewsTableView.addGestureRecognizer(swipeRight)
+        allNewsTableView.addGestureRecognizer(swipeLeft)
         
     }
     
@@ -75,24 +89,36 @@ class NewsListViewController: UIViewController {
         view.addSubview(newsTypePageControll)
     }
     
+    
 // MARK: - Actions
 
     @IBAction func storiesButtonTapped(_ sender: Any) {
+        newsPresenter.newsTypeChanged(pageNumber: 0)
         newsTypePageControll.currentPage = 0
-        
-        newsPresenter.loadNews()
     }
     
     @IBAction func videoButtonTapped(_ sender: Any) {
+        newsPresenter.newsTypeChanged(pageNumber: 1)
         newsTypePageControll.currentPage = 1
-        
-        newsPresenter.resetNewsData()
     }
     
     @IBAction func favouritesButtonTapped(_ sender: Any) {
+        newsPresenter.newsTypeChanged(pageNumber: 2)
         newsTypePageControll.currentPage = 2
-        
-        newsPresenter.resetNewsData()
+    }
+    
+    // MARK: - Objc methods
+
+    @objc func swipeRight() {
+        newsPresenter.swipeRight { [weak self] pageNumber in
+            self?.newsTypePageControll.currentPage = pageNumber
+        }
+    }
+    
+    @objc func swipeLeft() {
+        newsPresenter.swipeLeft { [weak self] pageNumber in
+            self?.newsTypePageControll.currentPage = pageNumber
+        }
     }
     
 }
@@ -139,7 +165,7 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.row == 0 {
-            return view.bounds.height / 4
+            return view.bounds.height / 3.5
         }
         
         return UITableView.automaticDimension
@@ -184,7 +210,7 @@ extension NewsListViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let size = CGSize(width: self.view.bounds.size.width,
-                          height: view.bounds.height / 4)
+                          height: view.bounds.height / 3.5)
 
         return size
     }
